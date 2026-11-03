@@ -228,6 +228,8 @@ p { margin: 0; }
 /* About */
 .founder { background: var(--soft); border-radius: 32px; overflow: hidden; display: flex; flex-wrap: wrap; }
 .founder__mark { flex: 1 1 340px; min-height: 420px; background: var(--ink); display: flex; align-items: center; justify-content: center; }
+.founder__mark { position: relative; }
+.founder__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .founder__mark span { font-size: clamp(96px, 12vw, 160px); font-weight: 600; letter-spacing: -0.06em; color: #fff; }
 .founder__text { flex: 1.3 1 440px; padding: clamp(32px, 5vw, 72px); display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .founder__quote { font-size: clamp(40px, 5vw, 72px); line-height: 1; font-weight: 600; letter-spacing: -0.045em; margin: 0; }

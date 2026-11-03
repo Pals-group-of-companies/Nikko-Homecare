@@ -48,7 +48,6 @@ All in `assets/js/main.js`, at the top in `CONFIG`:
 
 Also:
 - Replace `assets/img/nikko-homecare-logo.png` with the original high-resolution logo (same file name).
-- Add a portrait of Alice Gachui to the About page founder section when available.
 - Have the legal pages reviewed by a Kenyan advocate, and check whether registration with the Office of the Data Protection Commissioner is required.
 
 ## After launch
