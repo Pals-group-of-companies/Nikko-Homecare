@@ -12,7 +12,8 @@
     social: {
       facebook: '',
       instagram: '',
-      x: ''
+      x: '',
+      tiktok: 'https://www.tiktok.com/@nikko.homecare'
     }
   };
 
