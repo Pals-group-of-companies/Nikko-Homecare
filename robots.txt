@@ -1,0 +1,46 @@
+# robots.txt for https://nikkohomecare.co.ke
+# Search engines and AI assistants are welcome to read the public site.
+
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /?s=
+Disallow: /search/
+
+# Search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI search and assistants (lets ChatGPT, Claude, Perplexity, Gemini etc. find and cite you)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://nikkohomecare.co.ke/sitemap.xml
