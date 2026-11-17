@@ -8,7 +8,7 @@
     // While empty, forms open the visitor's email app with the message filled in.
     formEndpoint: '',
     email: 'care@nikkohomecare.co.ke',
-    // Add your social media profile links. Empty links stay hidden.
+    // Paste your exact social media profile links here; empty ones keep the default link.
     social: {
       facebook: '',
       instagram: '',
@@ -26,7 +26,7 @@
   /* Social links */
   d.querySelectorAll('[data-social]').forEach(function (a) {
     var url = CONFIG.social[a.getAttribute('data-social')];
-    if (url) { a.href = url; a.hidden = false; }
+    if (url) { a.href = url; }
   });
 
   /* Mobile menu */
