@@ -1,6 +1,6 @@
 # Nikko Homecare
 
-> Nikko Homecare is a home care and nursing provider in Nairobi, Kenya, founded by Alice Gachui, with over 10 years of experience. It provides professional nurses and caregivers for the elderly, the sick, the terminally ill, people recovering from surgery and persons living with disabilities, either in their own homes across Nairobi or at the Nikko residence on Nandi Road, Karen. Nurses are available 24 hours a day, 7 days a week.
+> Nikko Homecare is a home care and nursing provider in Nairobi, Kenya, with over 10 years of experience. It provides professional nurses and caregivers for the elderly, the sick, the terminally ill, people recovering from surgery and persons living with disabilities, either in their own homes across Nairobi or at the Nikko residence on Nandi Road, Karen. Nurses are available 24 hours a day, 7 days a week.
 
 - Address: Hse 128, Nandi Road, Karen, Nairobi, Kenya
 - Phone: +254 726 440 428
