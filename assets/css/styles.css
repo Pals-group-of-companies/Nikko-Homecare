@@ -537,3 +537,24 @@ body.menu-open .cookie { display: none; }
   .cookie .btn-row { width: 100%; }
   .cookie .btn { flex: 1 1 0; min-height: 46px; }
 }
+
+/* Form consent and guidance */
+.form__note { margin: -6px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--body); cursor: pointer; }
+.check input { flex: none; width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--accent); cursor: pointer; }
+.check a { color: var(--accent); }
+
+/* Map placeholder until consent */
+.map-card__placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center;
+  background:
+    linear-gradient(118deg, transparent 47%, #fff 47.4%, #fff 50%, transparent 50.4%),
+    linear-gradient(28deg, transparent 63%, rgba(255,255,255,0.9) 63.3%, rgba(255,255,255,0.9) 65%, transparent 65.3%),
+    linear-gradient(0deg, transparent 31%, rgba(255,255,255,0.75) 31.3%, rgba(255,255,255,0.75) 32.5%, transparent 32.8%),
+    linear-gradient(90deg, transparent 22%, rgba(255,255,255,0.6) 22.3%, rgba(255,255,255,0.6) 23.3%, transparent 23.6%),
+    radial-gradient(circle at 78% 22%, #D3E2CB 0 17%, transparent 17.5%),
+    radial-gradient(circle at 18% 82%, #D3E2CB 0 15%, transparent 15.5%),
+    #E7ECE3; }
+.map-card__placeholder[hidden] { display: none; }
+.map-card__marker { width: 52px; height: 52px; border-radius: 50% 50% 50% 6px; transform: rotate(-45deg); background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(14,16,51,0.25); }
+.map-card__marker svg { transform: rotate(45deg); }
+.map-card__placeholder p { margin: 0; max-width: 300px; font-size: 14px; line-height: 1.5; color: var(--ink); background: rgba(255,255,255,0.85); padding: 8px 12px; border-radius: 12px; }

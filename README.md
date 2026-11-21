@@ -43,7 +43,7 @@ Note: the 404 page uses links from the site root, so it looks correct once the c
 
 All in `assets/js/main.js`, at the top in `CONFIG`:
 
-- **Forms.** Create a form at [formspree.io](https://formspree.io) using care@nikkohomecare.co.ke, then paste the form ID into `formEndpoint`. Until then, the forms open the visitor's email app with their message filled in, so no enquiry is lost.
+- **Forms.** Submissions are emailed to care@nikkohomecare.co.ke through FormSubmit. Send one test from the Contact page, then click **Activate Form** in the email FormSubmit sends to that inbox. Until then, messages are not delivered.
 - **Social media.** Paste the Facebook, Instagram and X profile links into `social`. Icons appear in the footer automatically; empty ones stay hidden.
 
 Also:
@@ -61,3 +61,10 @@ Also:
 Each page is a self-contained `index.html` in its own folder. Shared styles are in `assets/css/styles.css` and shared behaviour in `assets/js/main.js`. The header and footer are repeated on every page, so update them on every page when they change.
 
 Images live in `assets/img/` as WebP. Keep new photos under about 200 KB, give them descriptive file names, and always write alt text.
+
+## Compliance notes (Kenya Data Protection Act, 2019)
+
+- Forms ask only for name, phone, optional email and a short message, warn visitors not to send medical details or ID numbers, require a privacy tick box, and have a separate, unticked box for email updates.
+- Google Maps loads only after "Accept all" or "Show map". Fonts are self-hosted. There is no analytics or advertising tracking.
+- The privacy policy lists every outside service (Vercel, FormSubmit, Truehost, Google Maps, WhatsApp, social links). Update it if you add any service.
+- Old WordPress URLs and security headers are set in `vercel.json`.

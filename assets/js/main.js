@@ -4,9 +4,10 @@
 
   /* ---- Site settings: edit these ---- */
   var CONFIG = {
-    // Paste your Formspree form ID (https://formspree.io) to receive form submissions by email.
-    // While empty, forms open the visitor's email app with the message filled in.
-    formEndpoint: '',
+    // Form submissions are emailed to this inbox through FormSubmit (formsubmit.co).
+    // The first submission sends an "Activate Form" email to this inbox: click it once.
+    // Set formService to '' to fall back to opening the visitor's email app instead.
+    formService: 'https://formsubmit.co/ajax/',
     email: 'care@nikkohomecare.co.ke',
     // Paste your exact social media profile links here; empty ones keep the default link.
     social: {
@@ -57,18 +58,19 @@
   function getConsent() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function setConsent(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
   var banner = d.getElementById('cookie-banner');
+  /* Google Maps loads only after consent ("Accept all") or when the visitor taps "Show map" */
   function loadMaps() {
-    d.querySelectorAll('[data-map]').forEach(function (box) {
-      if (box.querySelector('iframe')) return;
+    d.querySelectorAll('[data-map-src]').forEach(function (ph) {
+      var frame = ph.parentNode;
+      if (!frame || frame.querySelector('iframe')) return;
       var f = d.createElement('iframe');
-      f.src = box.getAttribute('data-map');
-      f.title = 'Map showing Nikko Homecare on Nandi Road, Karen';
+      f.src = ph.getAttribute('data-map-src');
+      f.title = 'Map showing Nikko Homecare on Nandi Road, Karen, Nairobi';
       f.loading = 'lazy';
       f.referrerPolicy = 'no-referrer-when-downgrade';
       f.allowFullscreen = true;
-      box.appendChild(f);
-      var ph = box.querySelector('.map__placeholder');
-      if (ph) ph.hidden = true;
+      frame.appendChild(f);
+      ph.hidden = true;
     });
   }
   if (banner && !getConsent()) banner.hidden = false;
@@ -141,34 +143,57 @@
   /* Forms */
   d.querySelectorAll('form[data-form]').forEach(function (form) {
     var status = form.querySelector('.form__status');
+    var btn = form.querySelector('button[type="submit"]');
+    var busy = false;
     function say(msg, ok) {
       if (!status) return;
       status.textContent = msg;
       status.className = 'form__status ' + (ok ? 'is-ok' : 'is-err');
     }
+    var FAIL = 'Sorry, your message could not be sent. Please call or WhatsApp us on +254 726 440 428.';
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (busy) return;
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var data = new FormData(form);
       if (data.get('_gotcha')) return;
       var subject = form.getAttribute('data-subject') || 'Website enquiry';
-      if (!CONFIG.formEndpoint) {
-        var lines = [];
-        data.forEach(function (v, k) { if (k.charAt(0) !== '_' && v) lines.push(k + ': ' + v); });
+      var fields = {};
+      data.forEach(function (v, k) {
+        if (k.charAt(0) === '_') return;
+        v = String(v).trim();
+        if (v) fields[k] = v.slice(0, 3000);
+      });
+      if (!fields['Email updates']) fields['Email updates'] = 'No';
+      busy = true;
+      if (btn) btn.disabled = true;
+      if (!CONFIG.formService) {
+        var lines = Object.keys(fields).map(function (k) { return k + ': ' + fields[k]; });
         window.location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
         say('Your email app should now open with your message. If it does not, call us on +254 726 440 428.', true);
+        setTimeout(function () { busy = false; if (btn) btn.disabled = false; }, 3000);
         return;
       }
-      data.append('_subject', subject);
-      var btn = form.querySelector('button[type="submit"]');
-      if (btn) btn.disabled = true;
-      fetch('https://formspree.io/f/' + CONFIG.formEndpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-        .then(function (r) {
-          if (r.ok) { form.reset(); say('Thank you. A member of our team will call you back shortly.', true); }
-          else { say('Sorry, something went wrong. Please call us on +254 726 440 428.', false); }
+      fields._subject = subject;
+      fields._template = 'table';
+      fields._captcha = 'false';
+      say('Sending…', true);
+      fetch(CONFIG.formService + encodeURIComponent(CONFIG.email), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(fields)
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok && String(res.j.success) === 'true') {
+            form.reset();
+            say('Thank you. A member of our team will call you back shortly.', true);
+          } else {
+            say(FAIL, false);
+          }
         })
-        .catch(function () { say('Sorry, something went wrong. Please call us on +254 726 440 428.', false); })
-        .then(function () { if (btn) btn.disabled = false; });
+        .catch(function () { say(FAIL, false); })
+        .then(function () { busy = false; if (btn) btn.disabled = false; });
     });
   });
 })();

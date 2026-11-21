@@ -9,3 +9,5 @@ This repository is the static website for Nikko Homecare (nikkohomecare.co.ke), 
 - Copy rules: never use the word "free"; the main call to action is "Book a consultation"; hours are "Always open"; do not name or picture the founder anywhere; 10+ years of experience.
 - Every new page needs: unique `<title>` and meta description, canonical URL, Open Graph tags, one `<h1>`, alt text on images, and an entry in `sitemap.xml` (and `llms.txt` if it is a main page).
 - Images: WebP in `assets/img/`, with `width`/`height` attributes and `loading="lazy"` below the fold.
+
+- Privacy: no optional third-party embeds or trackers before cookie consent; every form keeps the required privacy tick box, the unticked marketing box and the "no medical details or ID numbers" note; list any new outside service in the privacy policy.
