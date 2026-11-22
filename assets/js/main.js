@@ -162,6 +162,7 @@
       data.forEach(function (v, k) {
         if (k.charAt(0) === '_') return;
         v = String(v).trim();
+        if (/e-?mail/i.test(k) && v.indexOf('@') > 0) v = v.toLowerCase();
         if (v) fields[k] = v.slice(0, 3000);
       });
       if (!fields['Email updates']) fields['Email updates'] = 'No';
